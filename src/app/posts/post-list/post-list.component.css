@@ -1,0 +1,8 @@
+mat-accordion {
+  display: block;
+  margin-top: 50px;
+}
+
+mat-expansion-panel {
+  background-color: orange;
+}
