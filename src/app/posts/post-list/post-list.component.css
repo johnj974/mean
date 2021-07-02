@@ -6,3 +6,8 @@ mat-accordion {
 mat-expansion-panel {
   background-color: orange;
 }
+
+.info-text {
+  text-align: center;
+  margin-top: 20px;
+}
