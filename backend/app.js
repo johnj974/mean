@@ -4,6 +4,7 @@ const app = express();
 const Post = require("./models/post");
 
 const mongoose = require("mongoose");
+
 mongoose
   .connect(
     "mongodb+srv://mainRoot:ucoEQMvIj4xBaHiG@myfirstcluster.hw4lm.mongodb.net/mean-course?retryWrites=true&w=majority"
@@ -35,9 +36,11 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-  post.save();
-  res.status(201).json({
-    message: "post added successfully",
+  post.save().then((result) => {
+    res.status(201).json({
+      message: "post added successfully",
+      postId: result._id,
+    });
   });
 });
 
