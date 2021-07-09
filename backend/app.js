@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const Post = require("./models/post");
+
+const postRoutes = require("./routes/posts");
 
 const mongoose = require("mongoose");
 
@@ -31,47 +32,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post("/api/posts", (req, res, next) => {
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
-  });
-  post.save().then((result) => {
-    res.status(201).json({
-      message: "post added successfully",
-      postId: result._id,
-    });
-  });
-});
-
-app.get("/api/posts", (req, res, next) => {
-  Post.find().then((data) => {
-    res.status(200).json({
-      message: "Posts returned successfully",
-      posts: data,
-    });
-  });
-});
-
-app.delete("/api/posts/:id", (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id }).then((result) => {
-    console.log(result);
-    res.status(200).json({
-      message: "Post deleted",
-    });
-  });
-});
-
-app.put("/api/posts/:id", (req, res, next) => {
-  const post = new Post({
-    _id: req.body.id,
-    title: req.body.title,
-    content: req.body.content,
-  });
-  Post.updateOne({ _id: req.params.id }, post).then((result) => {
-    console.log(result);
-    res.status(200).json({ message: "update successful" });
-  });
-});
+app.use("/api/posts", postRoutes);
 
 module.exports = app;
