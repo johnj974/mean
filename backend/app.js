@@ -37,6 +37,6 @@ app.use(bodyParser.json());
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use("/api/posts", postRoutes);
-app.use("./api/user", userRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app;
