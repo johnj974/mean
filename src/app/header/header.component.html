@@ -2,8 +2,24 @@
   <span><a routerLink="">Messages</a></span>
   <span class="spacer"></span>
   <ul>
-    <li><a routerLink="create" routerLinkActive="active">New Post</a></li>
-    <li><a routerLink="signup" routerLinkActive="active">Sign Up</a></li>
-    <li><a routerLink="login" routerLinkActive="active">Login</a></li>
+    <li *ngIf="isUserAuthenticated">
+      <a routerLink="create" routerLinkActive="active">New Post</a>
+    </li>
+    <li *ngIf="!isUserAuthenticated">
+      <a routerLink="signup" routerLinkActive="active">Sign Up</a>
+    </li>
+    <li *ngIf="!isUserAuthenticated">
+      <a routerLink="login" routerLinkActive="active">Login</a>
+    </li>
+    <li>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="onLogout()"
+        *ngIf="isUserAuthenticated"
+      >
+        LogOut
+      </button>
+    </li>
   </ul>
 </mat-toolbar>
