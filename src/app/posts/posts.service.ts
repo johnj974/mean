@@ -31,6 +31,7 @@ export class PostsService {
                 content: post.content,
                 id: post._id,
                 imagePath: post.imagePath,
+                creator: post.creator,
               };
             }),
             maxPosts: postData.maxPosts,
@@ -61,15 +62,6 @@ export class PostsService {
         postData
       )
       .subscribe((data) => {
-        // const post: Post = {
-        //   id: data.post.id,
-        //   title: title,
-        //   content: content,
-        //   imagePath: data.post.imagePath,
-        // };
-        // post.id = data.post.id;
-        // this.posts.push(post);
-        // this.postsUpdated.next([...this.posts]);
         this.router.navigate(['/']);
       });
   }
@@ -84,6 +76,7 @@ export class PostsService {
       title: string;
       content: string;
       imagePath: string;
+      creator: string;
     }>(`http://localhost:3000/api/posts/${id}`);
   }
 
@@ -101,22 +94,12 @@ export class PostsService {
         title: title,
         content: content,
         imagePath: image,
+        creator: null,
       };
     }
     this.http
       .put(`http://localhost:3000/api/posts/${id}`, postData)
       .subscribe((response) => {
-        // const updatedPosts = [...this.posts];
-        // const oldPostIndex = updatedPosts.findIndex((p) => p.id === id);
-        // const post: Post = {
-        //   id: id,
-        //   title: title,
-        //   content: content,
-        //   imagePath: '',
-        // };
-        // updatedPosts[oldPostIndex] = post;
-        // this.posts = updatedPosts;
-        // this.postsUpdated.next([...this.posts]);
         this.router.navigate(['/']);
       });
   }

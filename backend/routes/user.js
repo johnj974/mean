@@ -55,6 +55,7 @@ router.post("/login", (req, res, next) => {
         message: "token generated",
         token: token,
         expiresIn: 3600,
+        userId: fetchedUser._id,
       });
     })
     .catch((err) => {
