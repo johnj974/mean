@@ -10,7 +10,9 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://mainRoot:ucoEQMvIj4xBaHiG@myfirstcluster.hw4lm.mongodb.net/mean-course?retryWrites=true&w=majority"
+    "mongodb+srv://mainRoot:" +
+      process.env.MONGO_ATLAS_PW +
+      "@myfirstcluster.hw4lm.mongodb.net/mean-course?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("connected to database");
